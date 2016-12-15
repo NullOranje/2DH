@@ -19,7 +19,7 @@ public class TwoMoveDiffieHellman {
     private KeyAgreement keyAgreement;
     private byte[] sessionKey;
 
-    Hashtable<Long, SecurityAssociation> sessionTable;
+    private Hashtable<Long, SecurityAssociation> sessionTable;
 
     /**
      * Constructor method
@@ -31,7 +31,7 @@ public class TwoMoveDiffieHellman {
     /**
      * Initializes the object if we're the session initiator (P_i)
      */
-    public void init() {
+    private void init() {
         try {
             GenerateDHParams();
             GenerateKeyPair();
@@ -49,7 +49,7 @@ public class TwoMoveDiffieHellman {
      * Initializes the object if we are not the session initiator (P_j)
      * @param key Initiator's public key
      */
-    public void init(DHPublicKey key) {
+    private void init(DHPublicKey key) {
         try {
             dhparams = key.getParams();
             GenerateKeyPair();
@@ -61,7 +61,7 @@ public class TwoMoveDiffieHellman {
         }
     }
 
-    public DHPublicKey getPublicKey() { return pubKey; }
+    private DHPublicKey getPublicKey() { return pubKey; }
 
     public byte[] getSharedKey() { return keyAgreement.generateSecret(); }
 
